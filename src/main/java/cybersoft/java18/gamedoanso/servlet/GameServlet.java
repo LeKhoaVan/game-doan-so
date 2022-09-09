@@ -82,11 +82,11 @@ public class GameServlet extends HttpServlet {
 
         Collections.sort(rank, new Comparator<GameSession>() {
             public int compare(GameSession o1, GameSession o2) {
-                if (o1.calculateTotalTime() > o2.calculateTotalTime())
-                    return 1;
-                if (o1.calculateTotalTime() == o2.calculateTotalTime())
+                if (o1.getTotalGuess() < o2.getTotalGuess())
+                    return -1;
+                if (o1.getTotalGuess() == o2.getTotalGuess())
                     return 0;
-                return -1;
+                return 1;
             }
         });
         req.setAttribute("rankPlayer", rank);

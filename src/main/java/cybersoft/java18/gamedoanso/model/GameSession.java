@@ -12,6 +12,7 @@ public class GameSession {
     private final String id;
     private final int target;
     private List<Gues> gues;
+    private int totalGuess;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private long totalTime;
@@ -38,6 +39,18 @@ public class GameSession {
         this.gues = new ArrayList<>();
         this.totalTime = calculateTotalTime();
     }
+    public GameSession(String id, int target, LocalDateTime startTime, LocalDateTime endTime, boolean isCompleted, boolean isActive, int totalGuess,String username) {
+        this.id = id;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.target = target;
+        this.isActive = isActive;
+        this.isCompleted = isCompleted;
+        this.username = username;
+        this.gues = new ArrayList<>();
+        this.totalGuess = totalGuess;
+        this.totalTime = calculateTotalTime();
+    }
 
 
     private int getRandom() {
@@ -53,6 +66,10 @@ public class GameSession {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public int getTotalGuess() {
+        return totalGuess;
     }
 
     public boolean getIsActive() {

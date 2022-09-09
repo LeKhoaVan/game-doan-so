@@ -139,7 +139,10 @@ public class GameSessionRepository {
 
     public ArrayList<GameSession> ratingPlayer() {
         ArrayList<GameSession> gameSessionList = new ArrayList<>();
-        String query = "select id, target, start_time, end_time, is_completed, is_active, username from game_session where end_time is not null ";
+        String query = "select gs.id, target, start_time, end_time, is_completed, is_active, count(g.session_id) as totalgues, username " +
+                " from game_session gs inner join guess g on gs.id = g.session_id " +
+                "    group by gs.id, target, start_time, end_time, is_completed, is_active, username " +
+                "    order by count(g.session_id);";
         Connection connection = MySqlConnection.getConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -152,6 +155,7 @@ public class GameSessionRepository {
                         result.getTimestamp("end_time").toLocalDateTime(),
                         result.getInt("is_completed") == 1 ? true : false,
                         result.getInt("is_active") == 1 ? true : false,
+                        result.getInt("totalgues"),
                         result.getString("username")
                 ));
             }

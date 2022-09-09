@@ -68,6 +68,7 @@
                     <th scope="col">Tổng thời gian (giây)</th>
                     <th scope="col">Trạng thái</th>
                     <th scope="col">Hoàn thành</th>
+                    <th scope="col">Số lần đoán</th>
                     <th scope="col">UserName</th>
                 </tr>
                 </thead>
@@ -84,6 +85,7 @@
                                 <td>${rank.totalTime}</td>
                                 <td>${rank.isActive ? 'không còn hoạt động': 'còn hoạt động'}</td>
                                 <td>${rank.isCompleted ? 'đã hoàn thành' : 'chưa hoàn thành'}</td>
+                                 <td>${rank.totalGuess}</td>
                                 <td>${rank.username}</td>
                             </tr>
                     </c:when>
