@@ -1,0 +1,1 @@
+insert into player(username,password,name) values("van","12345","Van");
